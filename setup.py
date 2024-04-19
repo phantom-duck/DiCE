@@ -18,7 +18,7 @@ for e in extras:
         extras_require[e] = [line.strip() for line in f]
 
 setuptools.setup(
-    name="dice_ml",
+    name="custom_dice_ml",
     version=VERSION_STR,
     license="MIT",
     author="Ramaravind Mothilal, Amit Sharma, Chenhao Tan",
