@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 import pytest
 
-import dice_ml
+import custom_dice_ml
 
 
 @pytest.fixture(scope='session')
@@ -17,7 +17,7 @@ def data_object():
          ('gender', ['Female', 'Male']),
          ('hours_per_week', [1, 99])]
     )  # providing an OrderedDict to make it work for Python<3.6
-    return dice_ml.Data(features=features_dict, outcome_name='income',
+    return custom_dice_ml.Data(features=features_dict, outcome_name='income',
                         type_and_precision={'hours_per_week': ['float', 2]}, mad={'age': 10})
 
 

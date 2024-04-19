@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder
 
-import dice_ml
+import custom_dice_ml
 
 
 def load_adult_income_dataset(only_train=True):
@@ -185,42 +185,42 @@ def load_custom_testing_dataset_regression():
 
 
 def get_adult_income_modelpath(backend='TF1'):
-    pkg_path = dice_ml.__path__[0]
+    pkg_path = custom_dice_ml.__path__[0]
     model_ext = '.h5' if 'TF' in backend else ('.pth' if backend == 'PYT' else '.pkl')
     modelpath = os.path.join(pkg_path, 'utils', 'sample_trained_models', 'adult'+model_ext)
     return modelpath
 
 
 def get_custom_dataset_modelpath_pipeline():
-    pkg_path = dice_ml.__path__[0]
+    pkg_path = custom_dice_ml.__path__[0]
     model_ext = '.sav'
     modelpath = os.path.join(pkg_path, 'utils', 'sample_trained_models', 'custom'+model_ext)
     return modelpath
 
 
 def get_custom_vars_dataset_modelpath_pipeline():
-    pkg_path = dice_ml.__path__[0]
+    pkg_path = custom_dice_ml.__path__[0]
     model_ext = '.sav'
     modelpath = os.path.join(pkg_path, 'utils', 'sample_trained_models', 'custom_vars'+model_ext)
     return modelpath
 
 
 def get_custom_dataset_modelpath_pipeline_binary():
-    pkg_path = dice_ml.__path__[0]
+    pkg_path = custom_dice_ml.__path__[0]
     model_ext = '.sav'
     modelpath = os.path.join(pkg_path, 'utils', 'sample_trained_models', 'custom_binary'+model_ext)
     return modelpath
 
 
 def get_custom_dataset_modelpath_pipeline_multiclass():
-    pkg_path = dice_ml.__path__[0]
+    pkg_path = custom_dice_ml.__path__[0]
     model_ext = '.sav'
     modelpath = os.path.join(pkg_path, 'utils', 'sample_trained_models', 'custom_multiclass'+model_ext)
     return modelpath
 
 
 def get_custom_dataset_modelpath_pipeline_regression():
-    pkg_path = dice_ml.__path__[0]
+    pkg_path = custom_dice_ml.__path__[0]
     model_ext = '.sav'
     modelpath = os.path.join(pkg_path, 'utils', 'sample_trained_models', 'custom_regression'+model_ext)
     return modelpath
@@ -246,7 +246,7 @@ def get_base_gen_cf_initialization(data_interface, encoded_size, cont_minx, cont
     #                      Check dependencies.
     from torch import optim
 
-    from dice_ml.utils.sample_architecture.vae_model import CF_VAE
+    from custom_dice_ml.utils.sample_architecture.vae_model import CF_VAE
 
     # Dataset for training Variational Encoder Decoder model for CF Generation
     df = data_interface.normalize_data(data_interface.one_hot_encoded_data)

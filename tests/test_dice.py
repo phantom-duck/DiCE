@@ -1,17 +1,17 @@
 import pytest
 from raiutils.exceptions import UserConfigValidationException
 
-import dice_ml
-from dice_ml.utils import helpers
+import custom_dice_ml
+from custom_dice_ml.utils import helpers
 
 
 class TestBaseExplainerLoader:
     def _get_exp(self, backend, method="random", is_public_data_interface=True):
         if is_public_data_interface:
             dataset = helpers.load_adult_income_dataset()
-            d = dice_ml.Data(dataframe=dataset, continuous_features=['age', 'hours_per_week'], outcome_name='income')
+            d = custom_dice_ml.Data(dataframe=dataset, continuous_features=['age', 'hours_per_week'], outcome_name='income')
         else:
-            d = dice_ml.Data(features={
+            d = custom_dice_ml.Data(features={
                 'age': [17, 90],
                 'workclass': ['Government', 'Other/Unknown', 'Private', 'Self-Employed'],
                 'education': ['Assoc', 'Bachelors', 'Doctorate', 'HS-grad', 'Masters',
@@ -23,24 +23,24 @@ class TestBaseExplainerLoader:
                 'hours_per_week': [1, 99]},
                             outcome_name='income')
         ML_modelpath = helpers.get_adult_income_modelpath(backend=backend)
-        m = dice_ml.Model(model_path=ML_modelpath, backend=backend, func="ohe-min-max")
-        exp = dice_ml.Dice(d, m, method=method)
+        m = custom_dice_ml.Model(model_path=ML_modelpath, backend=backend, func="ohe-min-max")
+        exp = custom_dice_ml.Dice(d, m, method=method)
         return exp
 
     def test_tf(self):
         tf = pytest.importorskip("tensorflow")
         backend = 'TF'+tf.__version__[0]
         exp = self._get_exp(backend, method="gradient")
-        assert issubclass(type(exp), dice_ml.explainer_interfaces.explainer_base.ExplainerBase)
-        assert isinstance(exp, dice_ml.explainer_interfaces.dice_tensorflow2.DiceTensorFlow2) or \
-            isinstance(exp, dice_ml.explainer_interfaces.dice_tensorflow1.DiceTensorFlow1)
+        assert issubclass(type(exp), custom_dice_ml.explainer_interfaces.explainer_base.ExplainerBase)
+        assert isinstance(exp, custom_dice_ml.explainer_interfaces.dice_tensorflow2.DiceTensorFlow2) or \
+            isinstance(exp, custom_dice_ml.explainer_interfaces.dice_tensorflow1.DiceTensorFlow1)
 
     def test_pyt(self):
         pytest.importorskip("torch")
         backend = 'PYT'
         exp = self._get_exp(backend, method="gradient")
-        assert issubclass(type(exp), dice_ml.explainer_interfaces.explainer_base.ExplainerBase)
-        assert isinstance(exp, dice_ml.explainer_interfaces.dice_pytorch.DicePyTorch)
+        assert issubclass(type(exp), custom_dice_ml.explainer_interfaces.explainer_base.ExplainerBase)
+        assert isinstance(exp, custom_dice_ml.explainer_interfaces.dice_pytorch.DicePyTorch)
 
     @pytest.mark.skip(reason="Need to fix this test")
     @pytest.mark.parametrize('method', ['random'])
@@ -48,8 +48,8 @@ class TestBaseExplainerLoader:
         pytest.importorskip("sklearn")
         backend = 'sklearn'
         exp = self._get_exp(backend, method=method)
-        assert issubclass(type(exp), dice_ml.explainer_interfaces.explainer_base.ExplainerBase)
-        assert isinstance(exp, dice_ml.explainer_interfaces.dice_random.DiceRandom)
+        assert issubclass(type(exp), custom_dice_ml.explainer_interfaces.explainer_base.ExplainerBase)
+        assert isinstance(exp, custom_dice_ml.explainer_interfaces.dice_random.DiceRandom)
 
     @pytest.mark.skip(reason="Need to fix this test")
     def test_minimum_query_instances(self):

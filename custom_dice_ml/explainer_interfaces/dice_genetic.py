@@ -10,9 +10,9 @@ import numpy as np
 import pandas as pd
 from raiutils.exceptions import UserConfigValidationException
 
-from dice_ml import diverse_counterfactuals as exp
-from dice_ml.constants import ModelTypes
-from dice_ml.explainer_interfaces.explainer_base import ExplainerBase
+from custom_dice_ml import diverse_counterfactuals as exp
+from custom_dice_ml.constants import ModelTypes
+from custom_dice_ml.explainer_interfaces.explainer_base import ExplainerBase
 
 
 class DiceGenetic(ExplainerBase):

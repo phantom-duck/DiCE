@@ -9,9 +9,9 @@ import timeit
 import numpy as np
 import tensorflow as tf
 
-from dice_ml import diverse_counterfactuals as exp
-from dice_ml.counterfactual_explanations import CounterfactualExplanations
-from dice_ml.explainer_interfaces.explainer_base import ExplainerBase
+from custom_dice_ml import diverse_counterfactuals as exp
+from custom_dice_ml.counterfactual_explanations import CounterfactualExplanations
+from custom_dice_ml.explainer_interfaces.explainer_base import ExplainerBase
 
 
 class DiceTensorFlow1(ExplainerBase):

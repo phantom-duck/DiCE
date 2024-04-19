@@ -5,8 +5,8 @@ import math
 import numpy as np
 import pandas as pd
 
-from dice_ml.constants import ModelTypes, _SchemaVersions
-from dice_ml.utils.serialize import DummyDataInterface
+from custom_dice_ml.constants import ModelTypes, _SchemaVersions
+from custom_dice_ml.utils.serialize import DummyDataInterface
 
 
 class _DiverseCFV1SchemaConstants:

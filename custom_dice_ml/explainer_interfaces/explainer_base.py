@@ -13,8 +13,8 @@ from raiutils.exceptions import UserConfigValidationException
 from sklearn.neighbors import KDTree
 from tqdm import tqdm
 
-from dice_ml.constants import ModelTypes, _PostHocSparsityTypes
-from dice_ml.counterfactual_explanations import CounterfactualExplanations
+from custom_dice_ml.constants import ModelTypes, _PostHocSparsityTypes
+from custom_dice_ml.counterfactual_explanations import CounterfactualExplanations
 
 
 class ExplainerBase(ABC):

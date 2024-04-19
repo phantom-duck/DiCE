@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from dice_ml.counterfactual_explanations import CounterfactualExplanations
-from dice_ml.diverse_counterfactuals import CounterfactualExamples
+from custom_dice_ml.counterfactual_explanations import CounterfactualExplanations
+from custom_dice_ml.diverse_counterfactuals import CounterfactualExamples
 
 
 class TestDiceKDBinaryClassificationMethods:

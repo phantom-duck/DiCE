@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 
-import dice_ml
-from dice_ml.counterfactual_explanations import CounterfactualExplanations
-from dice_ml.utils import helpers
+import custom_dice_ml
+from custom_dice_ml.counterfactual_explanations import CounterfactualExplanations
+from custom_dice_ml.utils import helpers
 
 torch = pytest.importorskip("torch")
 
@@ -12,10 +12,10 @@ torch = pytest.importorskip("torch")
 def pyt_exp_object():
     backend = 'PYT'
     dataset = helpers.load_adult_income_dataset()
-    d = dice_ml.Data(dataframe=dataset, continuous_features=['age', 'hours_per_week'], outcome_name='income')
+    d = custom_dice_ml.Data(dataframe=dataset, continuous_features=['age', 'hours_per_week'], outcome_name='income')
     ML_modelpath = helpers.get_adult_income_modelpath(backend=backend)
-    m = dice_ml.Model(model_path=ML_modelpath, backend=backend, func="ohe-min-max")
-    exp = dice_ml.Dice(d, m, method="gradient")
+    m = custom_dice_ml.Model(model_path=ML_modelpath, backend=backend, func="ohe-min-max")
+    exp = custom_dice_ml.Dice(d, m, method="gradient")
     return exp
 
 
